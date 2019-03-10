@@ -6,6 +6,11 @@
   "author": "jamsinclair <jamsinclairnz+npm@gmail.com>",
   "license": "MIT",
   "bin": "./cli.js",
+  "files": [
+    "cli.js",
+    "server.js",
+    "chrome-background-reload.js"
+  ],
   "scripts": {
     "start": "node ./",
     "test": "xo"
