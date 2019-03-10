@@ -1,0 +1,31 @@
+{
+  "name": "web-ext-reload",
+  "version": "0.1.0",
+  "description": "Plugin to reload your web extension during development",
+  "main": "server.js",
+  "author": "jamsinclair <jamsinclairnz+npm@gmail.com>",
+  "license": "MIT",
+  "bin": "./cli.js",
+  "scripts": {
+    "start": "node ./",
+    "test": "xo"
+  },
+  "dependencies": {
+    "chokidar": "^2.1.2",
+    "get-port": "^4.2.0",
+    "lodash": "^4.17.11",
+    "meow": "^5.0.0",
+    "ws": "^6.2.0"
+  },
+  "xo": {
+    "semicolon": false,
+    "prettier": true,
+    "spaces": 2
+  },
+  "devDependencies": {
+    "xo": "^0.24.0"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  }
+}
