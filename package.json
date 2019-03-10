@@ -20,7 +20,7 @@
   "xo": {
     "semicolon": false,
     "prettier": true,
-    "spaces": 2
+    "space": 2
   },
   "devDependencies": {
     "xo": "^0.24.0"
