@@ -6,5 +6,5 @@ module.exports = {
     instance.start()
     return instance
   },
-  Server: Server
+  Server
 }

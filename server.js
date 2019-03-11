@@ -28,6 +28,14 @@ class ReloadServer {
     this.sendReloadEvent = this.sendReloadEvent.bind(this)
   }
 
+  _broadcast(data) {
+    this.server.clients.forEach(client => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(data)
+      }
+    })
+  }
+
   async start() {
     this.server = new WebSocket.Server({port: this.port})
     console.log(`Starting web-ext-reload server on ${this.port}`)
@@ -38,17 +46,9 @@ class ReloadServer {
     }
   }
 
-  broadcast(data) {
-    this.server.clients.forEach(client => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(data)
-      }
-    })
-  }
-
   sendReloadEvent() {
     console.log('Reloading Extension')
-    this.broadcast(EVENTS.RELOAD)
+    this._broadcast(EVENTS.RELOAD)
   }
 
   startWatcher(paths, ignored) {
