@@ -14,9 +14,9 @@ const listenForReload = (port = 3030) => {
     }
   })
 
-  ws.onclose = e => {
-    console.info('[web-ext-reload] Socket closed:', e)
-  }
+  ws.addEventListener('close', e => {
+    console.info('[web-ext-reload] Socket closed:', e.code)
+  })
 
   ws.addEventListener('error', e => {
     console.warn('[web-ext-reload] Socket error:', e.type)
