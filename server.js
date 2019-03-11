@@ -1,5 +1,4 @@
 'use strict'
-const getPort = require('get-port')
 const chokidar = require('chokidar')
 const debounce = require('lodash/debounce')
 
@@ -16,7 +15,8 @@ class ReloadServer {
     paths = './',
     ignoredPaths = DEFAULT_IGNORED_PATHS,
     port = 3030,
-    debounceWait = 200
+    debounceWait = 200,
+    watch = true
   } = {}) {
     this.server = null
     this.watcher = null
@@ -24,21 +24,16 @@ class ReloadServer {
     this.ignoredPaths = ignoredPaths
     this.port = port
     this.debounceWait = debounceWait
+    this.watch = watch
     this.sendReloadEvent = this.sendReloadEvent.bind(this)
   }
 
-  async start(port, watch = true) {
-    const currentPort = await getPort({port: port || this.port})
+  async start() {
+    this.server = new WebSocket.Server({port: this.port})
+    console.log(`Starting web-ext-reload server on ${this.port}`)
 
-    if (port && currentPort !== port) {
-      console.log(`${port} in use, using ${currentPort}`)
-    }
-
-    this.server = new WebSocket.Server({port: currentPort})
-    console.log(`Starting web-ext-reload server on ${currentPort}`)
-
-    if (watch) {
-      this.watch(this.paths, this.ignoredPaths)
+    if (this.watch) {
+      this.startWatcher(this.paths, this.ignoredPaths)
       console.log(`Starting watcher for ${this.paths}`)
     }
   }
@@ -56,7 +51,7 @@ class ReloadServer {
     this.broadcast(EVENTS.RELOAD)
   }
 
-  watch(paths, ignored) {
+  startWatcher(paths, ignored) {
     this.watcher = chokidar.watch(paths, ignored)
     this.watcher.on('all', debounce(this.sendReloadEvent, this.debounceWait))
   }
