@@ -2,12 +2,13 @@
   "name": "web-ext-reload",
   "version": "0.1.0",
   "description": "Plugin to reload your web extension during development",
-  "main": "server.js",
+  "main": "index.js",
   "author": "jamsinclair <jamsinclairnz+npm@gmail.com>",
   "license": "MIT",
   "bin": "./cli.js",
   "files": [
     "cli.js",
+    "index.js",
     "server.js",
     "chrome-background-reload.js"
   ],

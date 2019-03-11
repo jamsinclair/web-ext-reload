@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict'
 const meow = require('meow')
-const ReloadServer = require('./server')
+const {startServer} = require('.')
 
 const cli = meow(
   `
@@ -10,7 +10,7 @@ const cli = meow(
 
 	Options
 	  --debounceWait, -d The wait after file change events before triggering reload
-	  --ignoredPaths, -i Glob of paths to ignore
+	  --ignoredPaths, -i File/Glob of paths to ignore
 	  --port,         -p Port number to start the reload server on
 
 	Examples
@@ -35,11 +35,9 @@ const cli = meow(
   }
 )
 
-const server = new ReloadServer({
+startServer({
   paths: cli.input[0],
   port: cli.flags.port && Number(cli.flags.port),
   ignoredPaths: cli.flags.ignoredPaths,
   debounceWait: cli.flags.debounceWait && Number(cli.flags.debounceWait)
 })
-
-server.start()
