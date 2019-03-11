@@ -2,6 +2,8 @@
 
 >
 
+Reload your Chrome extension during development via websockets.
+
 ## Install
 
 ```
