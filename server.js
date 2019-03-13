@@ -37,12 +37,12 @@ class ReloadServer {
   }
 
   async start() {
-    this.server = new WebSocket.Server({port: this.port})
     console.log(`Starting web-ext-reload server on ${this.port}`)
+    this.server = new WebSocket.Server({port: this.port})
 
     if (this.watch) {
-      this.startWatcher(this.paths, this.ignoredPaths)
       console.log(`Starting watcher for ${this.paths}`)
+      this.startWatcher(this.paths, this.ignoredPaths)
     }
   }
 
