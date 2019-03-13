@@ -52,7 +52,7 @@ class ReloadServer {
   }
 
   startWatcher(paths, ignored) {
-    this.watcher = chokidar.watch(paths, ignored)
+    this.watcher = chokidar.watch(paths, { ignored, ignoreInitial: true })
     this.watcher.on('all', debounce(this.sendReloadEvent, this.debounceWait))
   }
 
