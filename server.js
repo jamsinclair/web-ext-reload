@@ -7,7 +7,7 @@ const EVENTS = {
 }
 // eslint-disable-next-line no-useless-escape
 const DEFAULT_IGNORED_PATHS = [/(^|[\/\\])\../, 'node_modules/**']
-const DEBOUNCE_WATCH_WAIT = 200
+const DEBOUNCE_WATCH_WAIT = 1000
 
 const WebSocket = require('ws')
 
