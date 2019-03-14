@@ -7,6 +7,7 @@ const EVENTS = {
 }
 // eslint-disable-next-line no-useless-escape
 const DEFAULT_IGNORED_PATHS = [/(^|[\/\\])\../, 'node_modules/**']
+const DEBOUNCE_WATCH_WAIT = 200
 
 const WebSocket = require('ws')
 
@@ -15,7 +16,6 @@ class ReloadServer {
     paths = './',
     ignoredPaths = DEFAULT_IGNORED_PATHS,
     port = 3030,
-    debounceWait = 200,
     watch = true
   } = {}) {
     this.server = null
@@ -23,7 +23,7 @@ class ReloadServer {
     this.paths = paths
     this.ignoredPaths = ignoredPaths
     this.port = port
-    this.debounceWait = debounceWait
+    this.debounceWait = DEBOUNCE_WATCH_WAIT
     this.watch = watch
     this.sendReloadEvent = this.sendReloadEvent.bind(this)
   }
