@@ -9,20 +9,15 @@ const cli = meow(
 	  $ web-ext-reload path/to/watch
 
 	Options
-	  --debounceWait, -d The wait after file change events before triggering reload
-	  --ignoredPaths, -i File/Glob of paths to ignore
-	  --port,         -p Port number to start the reload server on
+	  --ignoredPaths, -i File/Glob of paths to ignore (Default: node_modules)
+	  --port,         -p Port number to start the reload server on (Default: 3030)
 
 	Examples
-	  $ web-ext-reload ./ --port=9000 --ignoredPaths=node_modules
-	  $ web-ext-reload ./ -p 9000 -i node_modules
+    $ web-ext-reload ./
+	  $ web-ext-reload ./dist -p 9000 -i ./dist/config
 `,
   {
     flags: {
-      debounceWait: {
-        type: 'string',
-        alias: 'd'
-      },
       ignoredPaths: {
         type: 'string',
         alias: 'i'
@@ -38,6 +33,5 @@ const cli = meow(
 startServer({
   paths: cli.input[0],
   port: cli.flags.port && Number(cli.flags.port),
-  ignoredPaths: cli.flags.ignoredPaths,
-  debounceWait: cli.flags.debounceWait && Number(cli.flags.debounceWait)
+  ignoredPaths: cli.flags.ignoredPaths
 })
