@@ -33,5 +33,12 @@
   },
   "engines": {
     "node": ">=7.6.0"
-  }
+  },
+  "keywords": [
+    "chrome",
+    "browser",
+    "extension",
+    "reload",
+    "devtool"
+  ]
 }
