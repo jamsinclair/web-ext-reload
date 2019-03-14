@@ -4,7 +4,7 @@
   "description": "Plugin to reload your web extension during development",
   "main": "index.js",
   "author": "jamsinclair <jamsinclairnz+npm@gmail.com>",
-  "repository": "github:jamsinclair/web-ext-reload"
+  "repository": "github:jamsinclair/web-ext-reload",
   "license": "MIT",
   "bin": "./cli.js",
   "files": [
